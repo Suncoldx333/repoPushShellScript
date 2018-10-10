@@ -86,27 +86,8 @@ read specifiVersion
 
 if [[ "$specifiVersion" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]; then
 	
-	if [[ "$specifiVersion" != "$version" ]]; then
-	
-		echo $specifiVersion
-		echo $version
-
-		#echo -e -n "与podspec文件内的版本号不一致，是否修改podspec文件内的版本号(\033[4myes\033[0m/no)：" 
-		#echo "与podspec文件内的版本号不一致"
-		#exit 1 
-
-		#read shouldChange
-		#shouldChange=${shouldChange:-"yes"}
-		#if [[ "$shouldChange" == "yes" ]]; then
-		
-			#version=$specifiVersion
-			#echo "修改"
-			#修改文件
-		#else
-
-			#echo "当前提交的版本号：${version}"
-		#fi
-	fi
+	#TODO1：输入版本号与已有版本号的比对处理（低于等于已有版本号）
+	#TODO2：podspec文件内的版本号与输入版本号不一致处理
 else
 
 	echo "版本格式不正确"
