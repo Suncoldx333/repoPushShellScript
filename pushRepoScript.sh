@@ -143,6 +143,10 @@ echo -e -n "~/.cocoapods/repos文件夹内所有的specs("${specs}")，选择你
 read sepcSource
 
 echo -e "开始提交到私有仓库...\n"
+
+repoUpdate="`pod repo update`"
+repoUpdateResult=$repoUpdate
+
 lintCommnad="pod spec lint "${podspecPath}" --allow-warnings --use-libraries"
 pushCommand="pod repo push "${sepcSource}" --allow-warnings --use-libraries"
 
