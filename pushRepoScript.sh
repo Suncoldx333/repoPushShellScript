@@ -19,6 +19,12 @@
 #
 #	获取版本号及依赖库
 
+echo -e "\n更新仓库...\n"
+
+#如果不更新，在推送到远程仓库时，可能会提示 repo not clean
+repoUpdate="`pod repo update`"
+repoUpdateResult=$repoUpdate
+
 echo -e "\n获取基础信息...\n"
 
 basepath=$(cd `dirname $0`; pwd)
@@ -95,7 +101,7 @@ else
 fi
 
 git add .
-echo -n "提交的版本修改的内容："
+echo -n "提交的版本修改的内容：(建议为版本号)"
 read content
 git commit -m "${content}"
 git tag $specifiVersion
@@ -143,9 +149,6 @@ echo -e -n "~/.cocoapods/repos文件夹内所有的specs("${specs}")，选择你
 read sepcSource
 
 echo -e "开始提交到私有仓库...\n"
-
-repoUpdate="`pod repo update`"
-repoUpdateResult=$repoUpdate
 
 lintCommnad="pod spec lint "${podspecPath}" --allow-warnings --use-libraries"
 pushCommand="pod repo push "${sepcSource}" --allow-warnings --use-libraries"
