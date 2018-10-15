@@ -94,9 +94,12 @@ if [[ "$specifiVersion" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]; then
 	
 	#TODO1：输入版本号与已有版本号的比对处理（低于等于已有版本号）
 	#TODO2：podspec文件内的版本号与输入版本号不一致处理
+	#MARK: 添加临时log
+	echo $specifiVersion
+
 else
 
-	echo "版本格式不正确"
+	echo "版本格式不正确，应为xx.xx.xx"
 	exit 1
 fi
 
@@ -145,7 +148,7 @@ fi
 
 specs=${specs#/}
 
-echo -e -n "~/.cocoapods/repos文件夹内所有的specs("${specs}")，选择你的私有源"
+echo -e -n "~/.cocoapods/repos文件夹内所有的specs("${specs}")，选择你的私有源："
 read sepcSource
 
 echo -e "开始提交到私有仓库...\n"
